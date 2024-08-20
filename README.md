@@ -46,10 +46,10 @@ This is a full-stack application built with **Next.js** that enables users to se
 ## 🛠️ Environment Variables
 
 ### Create a .env file in the root directory and add the following variables:
-- NEXTAUTH_URL=http://localhost:3000
-- NEXTAUTH_SECRET=your-random-secret
-- MONGODB_URI=your-mongodb-connection-string
-- OPENAI_API_KEY=your-openai-api-key
+- RESEND_API_KEY = your-api-key-for-resend-email-service
+- NEXTAUTH_SECRET = your-random-secret
+- MONGODB_URI = your-mongodb-connection-string
+- OPENAI_API_KEY = your-openai-api-key
 
 ### Replace placeholders with your actual credentials.
 
@@ -95,22 +95,22 @@ This is a full-stack application built with **Next.js** that enables users to se
 
 ## 🛠️ Future Enhancements
 
-### Add real-time messaging with WebSockets.
-### Implement message reporting and moderation.
-### Enhance AI suggestions with personalized preferences
+- Add real-time messaging with WebSockets.
+- Implement message reporting and moderation.
+- Enhance AI suggestions with personalized preferences
 
 ---
 
 ## 🤝 Contributing
 
-### Contributions are welcome! Please fork the repository and submit a pull request for any bug fixes or new features.
+- Contributions are welcome! Please fork the repository and submit a pull request for any bug fixes or new features.
 
 ---
 
 ## 🛠️ Acknowledgements
 
-### Next.js Documentation
-### NextAuth.js Documentation
-### MongoDB Documentation
+- [Next.js Documentation](https://nextjs.org/docs)
+- [NextAuth.js Documentation](https://next-auth.js.org/getting-started/introduction)
+- [MongoDB Documentation](https://www.mongodb.com/docs/atlas/)
 
 ---
