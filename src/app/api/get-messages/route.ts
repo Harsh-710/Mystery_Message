@@ -28,7 +28,10 @@ export async function GET(request: Request) {
                 $match: { _id: userId }
             },
             {
-                $unwind: '$messages'
+                $unwind: {
+                    path: '$messages',
+                    preserveNullAndEmptyArrays: true // Include documents with empty arrays
+                }
             },
             {
                 $sort: { 'messages.createdAt': -1 }

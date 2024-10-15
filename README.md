@@ -45,13 +45,13 @@ This is a full-stack application built with **Next.js** that enables users to se
 
 ## 🛠️ Environment Variables
 
-### Create a .env file in the root directory and add the following variables:
+Create a .env file in the root directory and add the following variables:
 - RESEND_API_KEY = your-api-key-for-resend-email-service
 - NEXTAUTH_SECRET = your-random-secret
 - MONGODB_URI = your-mongodb-connection-string
 - OPENAI_API_KEY = your-openai-api-key
 
-### Replace placeholders with your actual credentials.
+Replace placeholders with your actual credentials.
 
 ---
 

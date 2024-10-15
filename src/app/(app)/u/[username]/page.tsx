@@ -8,7 +8,6 @@ import { Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { CardHeader, CardContent, Card } from '@/components/ui/card';
-import { useCompletion } from 'ai/react';
 import {
   Form,
   FormControl,
@@ -38,15 +37,8 @@ export default function SendMessage() {
   const params = useParams<{ username: string }>();
   const username = params.username;
 
-  const {
-    complete,
-    completion,
-    isLoading: isSuggestLoading,
-    error,
-  } = useCompletion({
-    api: '/api/suggest-messages',
-    initialCompletion: initialMessageString,
-  });
+  const [ suggestedMessages, setSuggestedMessages ] = useState(initialMessageString);
+  const [ error, setError ] = useState<ApiResponse | { message: string }>();
 
   const form = useForm<z.infer<typeof messageSchema>>({
     resolver: zodResolver(messageSchema),
@@ -59,6 +51,7 @@ export default function SendMessage() {
   };
 
   const [isLoading, setIsLoading] = useState(false);
+  const [isSuggestLoading, setIsSuggestLoading] = useState(false);
 
   const onSubmit = async (data: z.infer<typeof messageSchema>) => {
     setIsLoading(true);
@@ -87,11 +80,28 @@ export default function SendMessage() {
   };
 
   const fetchSuggestedMessages = async () => {
+    setIsSuggestLoading(true);
     try {
-      complete('');
+      const response = await axios.post<ApiResponse>('/api/suggest-messages');
+      setSuggestedMessages(response.data.messages);
+
+      toast({
+        title: response.data.message,
+        variant: 'default',
+      });
+
     } catch (error) {
-      console.error('Error fetching messages:', error);
-      // Handle error appropriately
+      const axiosError = error as AxiosError<ApiResponse>;
+      setError(axiosError.response?.data || { message: 'Failed to fetch suggested messages' });
+
+      toast({
+        title: 'Error',
+        description:
+          axiosError.response?.data.message ?? 'Failed to fetch suggested messages',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsSuggestLoading(false);
     }
   };
 
@@ -153,7 +163,7 @@ export default function SendMessage() {
             {error ? (
               <p className="text-red-500">{error.message}</p>
             ) : (
-              parseStringMessages(completion).map((message, index) => (
+              parseStringMessages(suggestedMessages).map((message, index) => (
                 <Button
                   key={index}
                   variant="outline"
