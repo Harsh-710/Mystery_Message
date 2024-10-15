@@ -1,0 +1,19 @@
+# Ignore all build and deployment-related files
+build/
+dist/
+node_modules/
+
+# Ignore build output
+.next/
+
+# Ignore ESLint cache files
+.eslintcache
+
+# Ignore public/static files
+public/
+
+# Ignore environment and configuration files
+.env*
+*.config.js
+
+*.log
