@@ -16,4 +16,7 @@ public/
 .env*
 *.config.js
 
+# Ignore specific files
+*.js
+*.ts
 *.log
