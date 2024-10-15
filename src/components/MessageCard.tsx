@@ -20,7 +20,6 @@ import {
 import { Button } from './ui/button';
 import { useToast } from '@/hooks/use-toast';
 import { ApiResponse } from '@/types/ApiResponse';
-import { string } from 'zod';
 
 type MessageCardProps = {
   message: Message;
