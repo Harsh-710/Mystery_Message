@@ -19,4 +19,5 @@ public/
 # Ignore specific files
 *.js
 *.ts
+*.tsx
 *.log
