@@ -31,7 +31,7 @@ export async function POST() {
         {
             success: true,
             message: "Suggested messages fetched successfully",
-            messages: response.choices[0].message.content
+            data: response.choices[0].message.content
         },
         { status: 200 }
       );

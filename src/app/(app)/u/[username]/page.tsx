@@ -37,7 +37,7 @@ export default function SendMessage() {
   const params = useParams<{ username: string }>();
   const username = params.username;
 
-  const [ suggestedMessages, setSuggestedMessages ] = useState(initialMessageString);
+  const [ suggestedMessages, setSuggestedMessages ] = useState<string>(initialMessageString);
   const [ error, setError ] = useState<ApiResponse | { message: string }>();
 
   const form = useForm<z.infer<typeof messageSchema>>({
@@ -83,7 +83,7 @@ export default function SendMessage() {
     setIsSuggestLoading(true);
     try {
       const response = await axios.post<ApiResponse>('/api/suggest-messages');
-      setSuggestedMessages(response.data.messages);
+      setSuggestedMessages(response.data.data || "");
 
       toast({
         title: response.data.message,
